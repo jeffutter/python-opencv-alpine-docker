@@ -1,8 +1,8 @@
-FROM python:3-alpine3.6
+FROM python:3-alpine3.7
 
 ENV CC=/usr/bin/clang \
     CXX=/usr/bin/clang++ \
-    OPENCV_VERSION=3.3.1
+    OPENCV_VERSION=3.4.1
 
 RUN echo -e '@testing http://dl-cdn.alpinelinux.org/alpine/edge/testing\n\
 http://dl-cdn.alpinelinux.org/alpine/edge/community' >> /etc/apk/repositories
@@ -39,7 +39,7 @@ RUN apk add -U \
     && pip install numpy \
     && mkdir /opt \
     && cd /opt \
-    && wget https://github.com/opencv/opencv/archive/${OPENCV_VERSION}.zip \
+    && wget --quiet https://github.com/opencv/opencv/archive/${OPENCV_VERSION}.zip \
     && unzip ${OPENCV_VERSION}.zip \
     && rm -rf ${OPENCV_VERSION}.zip \
     && mkdir -p /opt/opencv-${OPENCV_VERSION}/build \
